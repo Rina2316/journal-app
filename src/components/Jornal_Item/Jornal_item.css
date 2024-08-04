@@ -1,0 +1,35 @@
+.Journal_item {
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.03);
+	color: rgba(255, 255, 255, 1);
+	padding: 20px;
+}
+
+.Journal_item__header {
+	font-family: Source Sans Pro;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 28px;
+}
+
+.Journal_item__date {
+	font-family: Source Sans Pro;
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20.11px;
+}
+
+.Journal_item__text {
+	font-family: Source Sans Pro;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20.11px;
+	color: rgba(255, 255, 255, 0.6);
+	overflow: hidden;
+}
+
+.Journal_item__body{
+	display: flex;
+	gap: 10px;
+}

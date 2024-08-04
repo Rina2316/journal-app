@@ -1,0 +1,12 @@
+.journal_add{
+	padding: 20px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	font-family: Source Sans Pro;
+font-size: 16px;
+font-weight: 600;
+line-height: 20.11px;
+}

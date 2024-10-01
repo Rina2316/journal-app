@@ -14,7 +14,6 @@ import { useLocalStorage } from './hooks/use-localstorage.hook';
 import AddUser from './components/AddUser/AddUser';
 
 function mapItems(items) {
-  console.log('ITEMS: ', items);
   if (!items) {
     return [];
   }
@@ -29,11 +28,16 @@ function mapItems(items) {
 function App() {
   const [items, setItems] = useLocalStorage('data');
   const [selectedItem, setSelectedItem] = useState(null)
+  const [isPreview, setIsPreview] = useState(true)
 
   useEffect(() => {
     if (!localStorage.getItem('data')) {
       setItems([])
     }
+
+    setTimeout(() => {
+      setIsPreview(false)
+    }, 5000);
   }, [])
 
 
@@ -58,11 +62,12 @@ function App() {
   };
 
   const deleteItem = (id) => {
-    console.log(id);
     setItems([...items.filter(i => i.id !== id)])
   }
 
-  return (
+  return isPreview ? <div className='preview'>
+    Journal app
+  </div> :  (
     <>
       <UserContextProvider >
         <div className='app'>

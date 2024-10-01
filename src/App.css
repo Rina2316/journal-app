@@ -1,3 +1,35 @@
 .app{
   display: flex;
 }
+
+.preview {
+  font-size: 52px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.5) translateY(30px);
+  animation: fadeInUp 2s ease-in-out forwards, glow 2s ease-in-out 2s infinite alternate;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff8a00, 0 0 30px #ff8a00;
+  }
+  100% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #da1b60, 0 0 40px #da1b60;
+  }
+}

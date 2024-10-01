@@ -11,16 +11,17 @@ import Body from './layouts/Body/Body';
 import LeftPanel from "./layouts/Left_Panel/LeftPanel";
 import { UserContextProvider } from './context/user.context';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
+import AddUser from './components/AddUser/AddUser';
 
 function mapItems(items) {
   console.log('ITEMS: ', items);
-	if (!items) {
-		return [];
-	}
-	return items.map(i => ({
-		...i,
-		date: new Date(i.date)
-	}));
+  if (!items) {
+    return [];
+  }
+  return items.map(i => ({
+    ...i,
+    date: new Date(i.date)
+  }));
 }
 
 
@@ -30,28 +31,31 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null)
 
   useEffect(() => {
-    console.log(items);
-  }, [items])
+    if (!localStorage.getItem('data')) {
+      setItems([])
+    }
+  }, [])
 
 
   const addItem = item => {
-		if (!item.id) {
-			setItems([...mapItems(items), {
-				...item,
-				date: new Date(item.date),
-				id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
-			}]);
-		} else {
-			setItems([...mapItems(items).map(i => {
-				if (i.id === item.id) {
-					return {
-						...item
-					};
-				}
-				return i;
-			})]);
-		}
-	};
+
+    if (!item.id) {
+      setItems([...mapItems(items), {
+        ...item,
+        date: new Date(item.date),
+        id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
+      }]);
+    } else {
+      setItems([...mapItems(items).map(i => {
+        if (i.id === item.id) {
+          return {
+            ...item
+          };
+        }
+        return i;
+      })]);
+    }
+  };
 
   const deleteItem = (id) => {
     console.log(id);
@@ -67,6 +71,8 @@ function App() {
           <LeftPanel>
 
             <Header />
+
+            <AddUser/>
 
             <Journal_add_button clearForm={() => setSelectedItem(null)} />
             <Journal_list items={mapItems(items)} setItem={setSelectedItem} />

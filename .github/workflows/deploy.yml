@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # основная ветка
 
 jobs:
   build:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Обновлено с v2 до v3
+        uses: actions/checkout@v3  # обновление до v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # Обновлено с v2 до v3
+        uses: actions/setup-node@v3  # обновление до v3
         with:
-          node-version: '20'  # Используйте актуальную версию Node.js
+          node-version: '20'  # используйте Node.js 20, так как v12 больше не поддерживается
 
       - name: Install dependencies
         run: npm install
@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3  # Эта версия также поддерживает Node 20
+        uses: peaceiris/actions-gh-pages@v3  # последняя версия экшена для деплоя
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Путь к папке с вашими собранными файлами
+          publish_dir: ./dist  # путь к вашим собранным файлам
